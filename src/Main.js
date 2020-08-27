@@ -15,6 +15,8 @@ class Main extends Component    {
 
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
+        this.nominate = this.nominate.bind(this);
+
 
     }
     
@@ -45,6 +47,17 @@ class Main extends Component    {
              })
     }
 
+    nominate(event)  {
+        event.preventDefault()
+        if (this.state.nominations.length < 5 && !this.state.nominations.includes(this.state.result))   {
+            this.setState({
+                ...this.state,
+                nominations: [...this.state.nominations,this.state.result]
+            })
+        }
+
+    }
+
     render()    {
         return(
             <div>
@@ -54,12 +67,12 @@ class Main extends Component    {
                 
                 <div>Your Nominations:</div>
                 <br></br>
-                {this.state.nominations.length === 0 ? <div>Search movies to nominate!</div> : null}
+                {this.state.nominations.length === 0 ? <div>Search movies to nominate!</div> : this.state.nominations.map(nom => <div key={nom.imdbID}>{nom.Title}</div>)}
                 <div id="search">
                     <input type="text" onChange={this.handleChange}></input>
                     <button onClick={this.search}>Search</button>
                 </div>
-                {this.state.result ? <div>{this.state.result.Title}, {this.state.result.Year} <div><button>Nominate</button></div></div> : null}
+                {this.state.result ? <div>{this.state.result.Title}, {this.state.result.Year} <div><button onClick={this.nominate}>Nominate</button></div></div> : null}
             </div>
         )
     }
