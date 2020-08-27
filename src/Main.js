@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
+import Nomination from "./Nomination";
+import Result from "./Result";
 
 
 class Main extends Component    {
@@ -16,6 +18,8 @@ class Main extends Component    {
         this.handleChange = this.handleChange.bind(this);
         this.search = this.search.bind(this);
         this.nominate = this.nominate.bind(this);
+        this.unNominate = this.unNominate.bind(this);
+
 
 
     }
@@ -26,11 +30,7 @@ class Main extends Component    {
     
     handleChange(event) {
         event.preventDefault();
-        this.setState({
-            ...this.state,
-            title: event.target.value
-        })
-        this.search()
+        this.setState({title: event.target.value}, this.search)
 
     }
 
@@ -40,21 +40,23 @@ class Main extends Component    {
         axios.get(api)
              .then((res) => {
                  console.log('data: ',res)
-                 this.setState({
-                     ...this.state,
-                     result: res.data
-                 })
+                 this.setState({result: res.data})
              })
     }
 
     nominate(event)  {
-        event.preventDefault()
+        event.preventDefault();
         if (this.state.nominations.length < 5 && !this.state.nominations.includes(this.state.result))   {
-            this.setState({
-                ...this.state,
-                nominations: [...this.state.nominations,this.state.result]
-            })
+            this.setState({nominations: [...this.state.nominations,this.state.result]})
+        }   else if (this.state.nominations.length === 5)   {
+                alert("Max 5 Nominations!")
         }
+    }
+
+    unNominate(event)   {
+        event.preventDefault();
+        let newNoms = this.state.nominations.filter(nom => nom.imdbID !== event.target.value);
+        this.setState({nominations: newNoms})
 
     }
 
@@ -62,17 +64,18 @@ class Main extends Component    {
         return(
             <div>
                 <div id="header">
-                    Welcome to The Shoppies
+                    Welcome to The Shoppies!
                 </div>
-                
-                <div>Your Nominations:</div>
-                <br></br>
-                {this.state.nominations.length === 0 ? <div>Search movies to nominate!</div> : this.state.nominations.map(nom => <div key={nom.imdbID}>{nom.Title}</div>)}
+                <div className="nominations">
+                    <div id="navTitle">Your Nominations:</div>
+                    <br></br>
+                    {this.state.nominations.length === 0 ? <div>You haven't nominated anything yet. Search for your favorites below!</div> : this.state.nominations.map(nom => <Nomination key={nom.imdbID} nom={nom} unNominate={this.unNominate}/>)}
+                </div>
                 <div id="search">
                     <input type="text" onChange={this.handleChange}></input>
                     <button onClick={this.search}>Search</button>
                 </div>
-                {this.state.result ? <div>{this.state.result.Title}, {this.state.result.Year} <div><button onClick={this.nominate}>Nominate</button></div></div> : null}
+                {this.state.result && this.state.result.Title ? <Result key={this.state.result.imdbID} nominations={this.state.nominations} result={this.state.result} nominate={this.nominate}/> : null}
             </div>
         )
     }
