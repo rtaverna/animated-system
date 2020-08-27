@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 10%;
 }
 
 .App-logo {
@@ -14,7 +15,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: coral;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +36,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#search {
+  padding: 10%;
+}
+
+#header {
+  padding: 10%;
 }
