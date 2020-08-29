@@ -1,4 +1,8 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
   text-align: center;
   padding-top:3%;
 }
@@ -45,13 +49,52 @@
 #header { 
   padding: 3%;
   font-size: xx-large;
-  background-color: coral;
+  background-color: #fca7af;
+  border-style: solid;
+  border-color: #fca7af;
+  border-radius: 10px;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
 .nominations  {
-  padding-top: 5%;;
+  display: flex;
+  padding: 3px;
+  width: 60%;
+  margin: auto;
+  margin-top: 5px;
+  border-style: solid;
+  background-color: #fca7af;
+  border-color: #fca7af;
+  border-radius: 10px;
 }
-
+.result {
+  display: flex;
+  padding-bottom: 10%;
+  justify-content: center;
+}
+#info {
+  text-align: left;
+}
+#title  {
+  font-weight: bold;
+}
+.resultText {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-left: 5%;
+  justify-content: space-between;
+}
 #navTitle {
   font-size: larger;
+  font-weight: bold;
+  padding: 2%;
+  margin-top: 5%;
+  background-color: #fca7af;
+  border-style: solid;
+  border-color: #fca7af;
+  border-radius: 10px;
 }

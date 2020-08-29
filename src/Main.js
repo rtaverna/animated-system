@@ -62,11 +62,11 @@ class Main extends Component    {
 
     render()    {
         return(
-            <div>
+            <div className="main">
                 <div id="header">
                     Welcome to The Shoppies!
                 </div>
-                <div className="nominations">
+                <div>
                     <div id="navTitle">Your Nominations:</div>
                     <br></br>
                     {this.state.nominations.length === 0 ? <div>You haven't nominated anything yet. Search for your favorites below!</div> : this.state.nominations.map(nom => <Nomination key={nom.imdbID} nom={nom} unNominate={this.unNominate}/>)}
