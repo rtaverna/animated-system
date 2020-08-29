@@ -69,13 +69,13 @@ class Main extends Component    {
                 <div>
                     <div id="navTitle">Your Nominations:</div>
                     <br></br>
-                    {this.state.nominations.length === 0 ? <div>You haven't nominated anything yet. Search for your favorites below!</div> : this.state.nominations.map(nom => <Nomination key={nom.imdbID} nom={nom} unNominate={this.unNominate}/>)}
+                    {this.state.nominations.length === 0 ? <div id="noNom">You haven't nominated anything yet. Search for your favorites below!</div> : this.state.nominations.map(nom => <Nomination key={nom.imdbID} nom={nom} unNominate={this.unNominate}/>)}
                 </div>
                 <div id="search">
                     <input type="text" onChange={this.handleChange}></input>
                     <button onClick={this.search}>Search</button>
                 </div>
-                {this.state.result && this.state.result.Title ? <Result key={this.state.result.imdbID} nominations={this.state.nominations} result={this.state.result} nominate={this.nominate}/> : null}
+                {this.state.result && this.state.result.Title ? <Result key={this.state.result.imdbID} nominations={this.state.nominations} result={this.state.result} nominate={this.nominate}/> : <div id="placeHold"></div>}
             </div>
         )
     }

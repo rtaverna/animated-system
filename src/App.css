@@ -5,6 +5,9 @@
   margin: auto;
   text-align: center;
   padding-top:3%;
+  background-image: url("https://i.pinimg.com/originals/9e/c4/86/9ec486f714d6ee19c9fae66ff1ba1085.gif");
+  background-repeat: no-repeat; 
+  background-size: cover;
 }
 
 .App-logo {
@@ -43,7 +46,8 @@
 }
 
 #search {
-  padding: 10%;
+  padding-top: 3%;
+  padding-bottom: 10%;
 }
 
 #header { 
@@ -72,8 +76,43 @@
 }
 .result {
   display: flex;
-  padding-bottom: 10%;
-  justify-content: center;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 10%;
+  border-style: solid;
+  background-color: #fca7af;
+  border-color: #fca7af;
+  border-radius: 10px;
+}
+.collapsible {
+  background-color: #fca7af;
+  color: black;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+.active, .collapsible:hover {
+  background-color: #ed5aad;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+#noNom  {
+  background-color: #fca7af;
+  border-style: solid;
+  background-color: #fca7af;
+  border-color: #fca7af;
+  border-radius: 10px;
+}
+#placeHold  {
+  height: 300px;
 }
 #info {
   text-align: left;
